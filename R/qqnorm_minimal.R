@@ -2,7 +2,8 @@ qqnorm_minimal = function(y, ...) {
 
   ## Set up par
   op = set_par_minimal()
-  on.exit(graphics::par(op))
+  if (requireNamespace("graphics", quietly = TRUE)){
+  on.exit(graphics::par(op))}
 
   new_args = list(pch = 21, bg = 1, axes = FALSE, frame = FALSE)
   old_args = list(...)
@@ -29,7 +30,8 @@ qqnorm_minimal = function(y, ...) {
 
   ## Need to remove main from new_args & pass it to do.call
   new_args$main = NULL
-  res = do.call(stats:::qqnorm.default, c(list(substitute(y), main=NULL), new_args))
+  if (requireNamespace("stats", quietly = TRUE)){
+  res = do.call(stats:::qqnorm.default, c(list(substitute(y), main=NULL), new_args))}
   if(is_y(old_args$log)){
     ticks_y = axTicks(2)
   }

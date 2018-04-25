@@ -1,4 +1,5 @@
-#' @importFrom graphics plot.default abline axTicks axis grid par title
+#' @import graphics
+#' @import stats
 #' @export "plot.default"
 plot.default = function(x, y = NULL, ...) {
   old_args = list(...)

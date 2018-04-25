@@ -1,4 +1,4 @@
-#' @importFrom graphics hist.default
+#' @import graphics
 #' @export "hist.default"
 hist.default = function(x, ...) {
 

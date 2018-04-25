@@ -6,7 +6,8 @@ set_par = function(new_par) {
   changes = vapply(new_par_names,
                    function(i) identical(cur_par[[i]], cached_par[[i]]),
                    logical(1))
-  graphics::par(new_par[changes])
+  if (requireNamespace("graphics", quietly = TRUE)){
+  graphics::par(new_par[changes])}
 }
 
 set_par_expand = function() {

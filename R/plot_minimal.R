@@ -53,10 +53,11 @@ plot_minimal = function(x, y = NULL, ...) {
   new_args[names(old_args)] = old_args
   new_args$main = NULL
 
+  if (requireNamespace("graphics", quietly = TRUE)){
   if (is.null(y))
     do.call(graphics::plot.default, c(list(substitute(x)), new_args))
   else
-    do.call(graphics::plot.default, c(list(substitute(x), substitute(y)), new_args))
+    do.call(graphics::plot.default, c(list(substitute(x), substitute(y)), new_args))}
 
   if(is_x(old_args$log)) {
     ticks_x = axTicks(1)

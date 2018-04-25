@@ -1,7 +1,9 @@
 hist_minimal = function(x, ...) {
   ## Set up par
   op = set_par_minimal()
-  on.exit(graphics::par(op))
+
+if (requireNamespace("graphics", quietly = TRUE)){
+  on.exit(graphics::par(op))}
 
   ## Grab old_args
   old_args = list(...)
@@ -10,7 +12,8 @@ hist_minimal = function(x, ...) {
   new_args[names(old_args)] = old_args
   ## Now args
   hist_out = suppressWarnings(
-    do.call(graphics::hist.default, c(list(substitute(x)), new_args))
+  if (requireNamespace("graphics", quietly = TRUE)){
+    do.call(graphics::hist.default, c(list(substitute(x)), new_args))}
   )
   new_args$plot = old_args$plot
 
@@ -32,7 +35,8 @@ hist_minimal = function(x, ...) {
 
   ## Don't display title - use title()
   new_args$main = " "
-  z = do.call(graphics::hist.default, c(list(substitute(x)), new_args))
+  if (requireNamespace("graphics", quietly = TRUE)){
+  z = do.call(graphics::hist.default, c(list(substitute(x)), new_args))}
 
   axis(2, ticks_y, ticks_y, tick = FALSE, las = 1)
   abline(0,0)

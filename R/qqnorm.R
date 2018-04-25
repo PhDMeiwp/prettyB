@@ -8,11 +8,12 @@ qqnorm.default = function(y, ...) {
   }
 }
 
-#' @importFrom stats qqline
+#' @import stats
 #' @export
 qqline = function(y, ...) {
   new_args = list(lty=3, col=2, lwd=2)
   old_args = list(...)
   new_args[names(old_args)] = old_args
-  do.call(stats::qqline, c(list(substitute(y)), new_args))
+  if (requireNamespace("stats", quietly = TRUE)){
+  do.call(stats::qqline, c(list(substitute(y)), new_args))}
 }

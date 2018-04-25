@@ -1,5 +1,4 @@
-
-#' @importFrom graphics barplot.default barplot
+#' @import graphics
 #' @export "barplot.default"
 barplot.default = function(height, ...) {
   theme = cache$theme
